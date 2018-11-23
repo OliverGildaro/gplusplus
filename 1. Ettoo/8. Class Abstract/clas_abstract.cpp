@@ -1,11 +1,10 @@
 //Clases Abstractas
-//*Es una clase que tiene uno o mas metodos abstractos
+//*Es una clase que tiene uno o mas metodos abstractos "puros"
 //*Obliga a implementar los metodos abstractos en clases hijas
 //*Es una clase que no se puede instanciar
 #include <iostream>
 
 using namespace std;
-
 
 class Animal
 {
@@ -47,6 +46,7 @@ int main()
     Animal* e = new Vaca(); //polimorfismo abstracto generalmente funciona con punteros y debe instanciar el padre
     //nose puede instanciar animales es por eso que debe ser puntero
     e->comunicarse();
+    
     delete e;
 
     e = new Perro();//el puntero ya ha sido creado, puedo reutilizarlo para instanciar un perro
