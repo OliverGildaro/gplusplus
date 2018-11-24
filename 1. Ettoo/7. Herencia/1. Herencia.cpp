@@ -30,7 +30,7 @@ public:
             cout <<"Bye vehicle\n";
       }
 
-      virtual void print() const//virtual a;ade un puntero al final del objeto que apunta a un vtable
+      virtual void print() const//virtual aniade un puntero al final del objeto que apunta a un vtable
       //en el vtable hay una tabla que tiene un mapeo de los metodos marcados como virtuales
       //de esa forma llama a su metodo correspondiente
       {

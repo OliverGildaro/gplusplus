@@ -8,8 +8,6 @@ using namespace std;
 
 class Animal
 {
-private:
-    
 public:
     Animal() { }
     ~Animal() { }
@@ -22,8 +20,6 @@ public:
 
 class Vehicle
 {
-private:
-    
 public:
     Vehicle() { }
     ~Vehicle() { }
@@ -36,8 +32,6 @@ public:
 
 class Volador
 {
-private:
-    
 public:
     Volador() { }
     ~Volador() { }
@@ -50,8 +44,6 @@ public:
 
 class Murcielago : public Animal, public Volador
 {
-private:
-    
 public:
     Murcielago() { }
     ~Murcielago() { }
@@ -62,11 +54,8 @@ public:
     }
 };
 
-
 class Avion : public Volador, public Vehicle
 {
-private:
-    
 public:
     Avion() { }
     ~Avion() { }

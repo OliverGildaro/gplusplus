@@ -84,7 +84,7 @@ void substring(char* dst, const char* src, int n1, int n2)
 
 int main()
 {
-      const char* q = "hello world";//solo es de lectura, segmentation fault si se tarta de escribir
+      const char* q = "hello world";//solo es de lectura, segmentation fault si se trata de escribir
       cout << q << "\n";
 
       char s[] = "hola mundo";

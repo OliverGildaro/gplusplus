@@ -60,8 +60,8 @@ public:
 
 int main()
 {
-    Object* p1 = new Integer{10};
-    Icomparable* p2 = new Integer{45};
+    Object* p1 = new Integer{10};//equals, show
+    Icomparable* p2 = new Integer{45};//compare_to
 
     cout << p1->equals(*p2) << "\n";
     cout << p2->compareTo(*p1) << "\n";
