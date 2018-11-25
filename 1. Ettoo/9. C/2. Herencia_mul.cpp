@@ -2,18 +2,15 @@
 
 using namespace std;
 
-
 struct A
 {
     int a;
 };
 
-
 struct B
 {
     int b;
 };
-
 
 struct C: A,B
 {

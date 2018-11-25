@@ -5,28 +5,21 @@ using namespace std;
 
 class Object
 {
-private:
-    
 public:
     Object() { }
     virtual ~Object() { }
-
     virtual bool equals(const Object& obj) const = 0;
     virtual void show() const =0;
 };
 
-
 class Icomparable : public virtual Object //en herencia virtual se debe marcar como virtual 
 {
-private:
-    
 public:
     Icomparable() { }
     virtual ~Icomparable() { }
     //aca ya estan declarados los metodos abstractos del padre
     virtual int compareTo(const Object& obj) const = 0;
 };
-
 
 class Integer : public virtual Object, public virtual Icomparable
 //se debe utilizar herencia virtual debido a que existe ambiguedad en los metodos que va a sobreescribir

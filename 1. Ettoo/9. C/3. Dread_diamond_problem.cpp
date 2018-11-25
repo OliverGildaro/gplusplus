@@ -2,12 +2,10 @@
 #include <iostream>
 using namespace std;
 
-
 struct J
 {
     int p;
 };
-
 
 struct K1 : J
 {
