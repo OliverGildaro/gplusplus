@@ -120,9 +120,9 @@ public:
 int main()
 {
       // String s;
-      // String s2{"hola"};
+      String s2{"hola"};
       // String s3 = {"mundo"};
-      // String s4 = s2;//constructor copia
+      String s4 = s2;//constructor copia
       // s = s3;//asignacion
 
       // cout << s4.c_str() << "\n";
