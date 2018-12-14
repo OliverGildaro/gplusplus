@@ -11,13 +11,10 @@ using namespace std;
 
 const string KEYOP = "{";
 const string KEYCL = "}";
-const string BRACKOP = "[";
-const string BRACKCL = "]";
 const string SPACE = " ";
 const string DOSP = ":";
 const string COMA = ",";
 const string COMILLAS = "\"";
-const string ENDL = "\n";
 
 class object
 {
@@ -27,6 +24,7 @@ public:
       object() { }
       ~object() { }
 };
+
 
 class object_pair_string : public object
 {
@@ -42,21 +40,6 @@ public:
       {
             return key;
       }
-
-      const string get_name() const
-      {
-            return name;
-      }
-};
-
-class object_string : public object
-{
-private:
-      string name;
-public:
-      object_string(const string& name)
-      :name{name} { }
-      ~object_string() { }
 
       const string get_name() const
       {
@@ -84,6 +67,16 @@ public:
       {
             return objects[position];
       }
+};
+
+
+class array_pair_string : public array_object
+{
+private:
+      
+public:
+      array_pair_string() { }
+      ~array_pair_string() { }
 
       bool exist()
       {
@@ -96,107 +89,40 @@ public:
       }
 };
 
-class array_pair_string : public array_object
-{
-private:
-      
-public:
-      array_pair_string() { }
-      ~array_pair_string() { }
-
-     
-};
-
-class array_string : public array_object
-{
-private:
-      
-public:
-      array_string() { }
-      ~array_string() { }
-};
-
-class JsonArray
-{
-private:
-      array_string array_str;
-public:
-      JsonArray() { }
-      ~JsonArray() { }
-
-      void add(const string& name)
-      {
-            object_string* new_obj = new object_string{name};
-            array_str.add(new_obj);
-      }
-
-      object* operator[](size_t position)
-      {
-            return array_str[position];
-      }
-
-      size_t size()
-      {
-            return array_str.size();
-      }
-};
-
 class JsonObject
 {
 private:
       array_pair_string array_str_pair;
-      array_string array_str;
 public:
       JsonObject() { }
       ~JsonObject() { }
 
-      void child(string& aux, bool flag)
+      // string to_string() const
+      // {
+
+      // }
+
+      void child(const string& name)
       {
-            // cout << "hola\n";
-            aux += SPACE;
-            aux += COMILLAS;
-            aux += static_cast<const object_string*>(array_str[0])->get_name();
-            aux += COMILLAS;
-            aux += DOSP;
-            aux += SPACE;
-            aux += BRACKOP;
-            if(flag == true) aux += ENDL;
-            if(array_str.exist())
-            {
-                  for(size_t i = 1; i < array_str.size(); i++)
-                  {
-                        aux += SPACE;
-                        // if(flag == true) aux += ENDL;
-                        aux += COMILLAS;
-                        aux += static_cast<const object_string*>(array_str[i])->get_name();
-                        aux += COMILLAS;
-                        if(i ==  array_str.size() - 1 )
-                              break;
-                        aux += COMA;
-                  }
-            }
-            aux += SPACE;
-            aux += BRACKCL;
-            aux += SPACE;
+
       }
-// "ingredientes\": [ \"leche\", \"frutilla\", \"manzana\", \"azucar\" ] }" <<"\n"
 
       string to_string(bool flag = false, size_t num = 0)
       {
             string aux;
             aux += KEYOP;
-            if(flag == true) aux += ENDL;
             if(array_str_pair.exist())
             {
                   for(size_t i = 0; i < array_str_pair.size(); i++)
                   {
+                        
                         aux += SPACE;
                         aux += COMILLAS;
                         aux += static_cast<const object_pair_string*>(array_str_pair[i])->get_key();
                         aux += COMILLAS;
                         aux += DOSP;
                         aux += SPACE;
-                        // if(i == array_str_pair.size() - 1 && array_str_pair.size() > 1)
+                        if(i == array_str_pair.size() - 1 && array_str_pair.size() > 1)
                         {
                               // aux += SPACE;
                               // cout << aux <<"\n";
@@ -208,19 +134,15 @@ public:
                         aux += static_cast<const object_pair_string*>(array_str_pair[i])->get_name();
                         aux += COMILLAS;
                         aux += COMA;
-                        aux += ENDL;
-                        cout << array_str.size() << "\n";
-                        if(array_str.exist())
-                        {
-                              cout << "hola\n";
-                              child(aux, flag);
-                        }
+                        child(aux);
                   }
+                  
             }
             aux += KEYCL;
+            
             return aux;
       }
-// "{ \"nombre\": \"jugo de frutas\", 
+// "{ \"nombre\": \"jugo de frutas\", \"ingredientes\": [ \"leche\", \"frutilla\", \"manzana\", \"azucar\" ] }" <<"\n"
 
       void add(const string& name, const string& last_name)
       {
@@ -236,19 +158,25 @@ public:
             array_str_pair.add(new_obj);
       }
 
-      void add(const string& name_JsonArray, JsonArray& obj)
+      void add(const string& name_JsonArray, const JsonArray& obj)
       {
-            object_string* new_obj = new object_string{name_JsonArray};
-            array_str.add(new_obj);
-            for(size_t i = 0; i < obj.size(); i++)
-            {
-                  static_cast<obje>obj[i]
-                  array_str.add(obj[i]);
-            }
+
       }
 };
 
+class JsonArray
+{
+private:
+      
+public:
+      JsonArray() { }
+      ~JsonArray() { }
 
+      void add(const string& name)
+      {
+
+      }
+};
 
 // bool test0()
 // {
@@ -324,8 +252,8 @@ bool test7()
     ingredients.add("azucar");
 
     jo.add("ingredientes", ingredients);
-//     cout << jo.to_string() << "\n";
-//     cout << "{ \"nombre\": \"jugo de frutas\", \"ingredientes\": [ \"leche\", \"frutilla\", \"manzana\", \"azucar\" ] }" <<"\n";
+    cout << jo.to_string() << "\n";
+    cout << "{ \"nombre\": \"jugo de frutas\", \"ingredientes\": [ \"leche\", \"frutilla\", \"manzana\", \"azucar\" ] }" <<"\n";
     return jo.to_string() == "{ \"nombre\": \"jugo de frutas\", \"ingredientes\": [ \"leche\", \"frutilla\", \"manzana\", \"azucar\" ] }";
 }
 
@@ -368,16 +296,6 @@ bool test9()
     ingredients.add("azucar");
 
     jo.add("ingredientes", ingredients);
-    cout << jo.to_string(true, 2) << "\n";
-//     cout << "{\n"
-//     "  \"nombre\": \"jugo de frutas\",\n"
-//     "  \"ingredientes\": [\n"
-//     "    \"leche\",\n"
-//     "    \"frutilla\",\n"
-//     "    \"manzana\",\n"
-//     "    \"azucar\"\n"
-//     "  ]\n"
-//     "}";
     return jo.to_string(true, 2) ==
     "{\n"
     "  \"nombre\": \"jugo de frutas\",\n"
