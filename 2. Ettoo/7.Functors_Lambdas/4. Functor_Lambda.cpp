@@ -8,6 +8,52 @@ using namespace std;
 //VENTAJAS
 //*un functor te permite definir diferentes tipos de comportamiento gracias a la actualizacion de sus estados
 //*En punteros a funciones, se debe implementar una nueva funcion para cada comportamiento diferente
+class Sumador
+{
+private:
+      int descuento;//este es el estado que esta manejando
+public:
+      Sumador(int desc)
+      :descuento{desc} { }
+      ~Sumador() { }
+
+      int operator()(int a, int b)
+      {
+            return a + b - descuento;
+      }
+};
+
+struct Range
+{
+      int min, max;
+      bool operator()(int n) const
+      {
+            return n >= min && n <= max;
+      }
+};
+
+bool is_impar(int n)
+{
+      return n%2 != 0;
+}
+
+bool is_bet_10_a_30(int n)
+{
+      return n >= 10 && n <=30;
+}
+
+template <typename PRED>
+void show(const int* a, size_t n, PRED pred)//en c++ se suele llamar predicado a todas las funciones que se les pasa un valor y devuelven un booleano
+{
+      
+      for(size_t i = 0; i < n; i++)
+      {
+            int e = a[i];//declarar el tipo como auto permite una mejor funcionalidad
+            if(pred(e))
+                  cout << e <<"\n";
+      }
+      
+}
 
 int main()
 {
