@@ -43,14 +43,16 @@ struct fact<1>
 
 int main()
 {
-      sucesor(12);//siempre busca su especializacion, si no la encuentra usa una generica
-      sucesor("hola"s);//tiene que ser convertida a string en este punto
+      // sucesor(12);//siempre busca su especializacion, si no la encuentra usa una generica
+      // sucesor("hola"s);//tiene que ser convertida a string en este punto
 
       cout << factorial<5>() << "\n";
-      cout << fact<6>::value <<"\n";//este metodo es mucho mas rapido dado que se come 
+      // cout << fact<6>::value <<"\n";//este metodo es mucho mas rapido dado que se come 
       //las llamadas a las funciones intermedias y devuelve directamente 720
       //el 6 debe ser conocido en tiempo de compilacion
 }
 
 //nm -C main | grep factorial... muestra las funciones que genera
-//main.cpp -o main -O2... para vender mi programa
+//main.cpp -o main -O2... para vender mi programa, debo realizar la compilacion
+//de esta manera pues es mas optima, esto en caso de la llamada a factorial()
+//;la llamada a fact ya se come todas las llamadas intermedias

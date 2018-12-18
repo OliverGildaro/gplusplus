@@ -1,5 +1,5 @@
 #include <iostream>
-
+//malloc no trabaja con objetos, esta implementacion no sirve
 using namespace std;
 
 template <class T>
@@ -12,7 +12,7 @@ public:
       ArrayList()
       :items{static_cast<T*>(malloc(0))}, n{0} { }
       //malloc y realloc solo funciona con POD
-      //*int, char, double
+      //int, char, double, puntero
       ~ArrayList() 
       { 
             free(items);

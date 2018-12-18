@@ -17,13 +17,11 @@
 //*los binarios son mas grandes
 using namespace std;
 
-
 template<typename T>
 T sum(T a, T b)
 {
       return a+b;
 }
-
 
 struct MyInt
 {
@@ -36,8 +34,8 @@ struct MyInt
 
 int main()
 {
-    cout << sum(6,8) << "\n";
-    cout << sum(7.6,8.5) << "\n";
+    cout << sum(6, 8) << "\n";
+    cout << sum(7.6, 8.5) << "\n";
     cout << sum<string>("hello", "world") <<"\n";//no compila por que no puede sumar const char*
     //en los casos que no puede deducir al tipo tenemos que ayudarle
     cout << sum(MyInt{8}, MyInt{4}).n << "\n";//devuelve un objeto del tipo MyInt, este llama a su atributo n
