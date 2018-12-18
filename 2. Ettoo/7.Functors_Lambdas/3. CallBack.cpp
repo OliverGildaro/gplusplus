@@ -1,14 +1,8 @@
 #include <iostream>
-#include <cstdlib>//algorit qsort
+#include <cstdlib>
 #include <cstring>
-//FUNCTION POINTERS
-//*variables que almacenan una direccion de memoria
-//*en lugar de apuntar a un dato apuntan a una funcion
-//*la sintaxis de punteros a funciones especifican la signatura de la funcion apuntada
-using namespace std;
-//USOS
-//*Polimorfismo "ad hoc"
 
+using namespace std;
 //CALLBACKS
 
 //tb se puede tener un alias
