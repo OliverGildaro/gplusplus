@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+// #include <string_view>
 #include <string_view>
 using namespace std::string_literals;
 // #include <stdexcept>
@@ -34,7 +35,7 @@ int main()
     wstring hh = L"hola"; //cada elemento es un wchar_t
     wstring ww = L"mundo";
 
-    wstring hhww = hh + L" " + ww;//soporta caracteres choinos, arabes
+    wstring hhww = hh + L" " + ww;//soporta caracteres chinos, arabes
     wcout << hhww << "\n";
 
     cout << hw.length() << "\n";//length devuelve un size_t
