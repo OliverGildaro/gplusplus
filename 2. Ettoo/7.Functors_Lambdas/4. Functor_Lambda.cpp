@@ -91,8 +91,7 @@ int main()
             return n <= min || n >= max;
       });
       puts("numeros menores a 10 y mayores a 20 (funcion lambda)\n"); 
-
-      //[min, max] solo pueden ser modificados si son pasados por referencia
-      //[=] todos los parametros son pasados por valor
-      //[&] todos los parametros son pasados por referencia
 }
+//[min, max] solo pueden ser modificados si son pasados por referencia
+//[=] todos los parametros son pasados por valor
+//[&] todos los parametros son pasados por referencia
