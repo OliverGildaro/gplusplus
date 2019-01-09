@@ -45,18 +45,18 @@ public:
             print(root);
       }
 
-      void release(Node* node)
-      {
-            if(node == nullptr) return;
-            release(node->left);
-            release(node->right);
-            delete node;
-      }
+      // void release(Node* node)
+      // {
+      //       if(node == nullptr) return;
+      //       release(node->left);
+      //       release(node->right);
+      //       delete node;
+      // }
 
-      const T& operator[](const T& e)
-      {
-            return find(root, e);
-      }
+      // const T& operator[](const T& e)
+      // {
+      //       return find(root, e);
+      // }
 
 private:
       void add(Node*& node, const T& n)//(&)ahora root y node son el mismo puntero
@@ -82,19 +82,19 @@ private:
             print(node->right);
       }
 
-      const T& find(Node* node, const T& e) const
-      {
-            if(node == nullptr)
-                  throw "not found";
+      // const T& find(Node* node, const T& e) const
+      // {
+      //       if(node == nullptr)
+      //             throw "not found";
             
-            bool less = c.is_less(e, node->elem);
-            if(less)
-                  return find(node->left, e);
-            if(c.is_less(node->elem, e))
-                  return find(node->right, e);
+      //       bool less = c.is_less(e, node->elem);
+      //       if(less)
+      //             return find(node->left, e);
+      //       if(c.is_less(node->elem, e))
+      //             return find(node->right, e);
             
-            return node->elem;
-      }
+      //       return node->elem;
+      // }
 };
 
 int main()

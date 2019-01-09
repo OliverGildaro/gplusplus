@@ -8,7 +8,7 @@
 //desventaja, todo es en tiempo de compilacion, no se puede aumentar nada en tiempo de ejecucion
 using namespace std;
 
-template <typename H>//h es mi politica
+template <typename H>//H es mi politica
 struct Animal
 {
       H h;
