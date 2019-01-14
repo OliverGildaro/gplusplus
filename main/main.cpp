@@ -1,95 +1,98 @@
 #include <iostream>
-#include <unordered_map>
-//MAPS
-//*elementos estan almacenados como clave y valor
-//*No hay claves repetidas
-//*map->arbol binario de busqueda
-//*unordered_map->tabla hash
+
 using namespace std;
-//insert->O(log2N)
-//delete->O(log2N)
-//find->O(log2N)
 
-//mapa no ordenado
 
-struct key
+
+class Image
 {
-    int id1;
-    int id2;
-};
+private:
+    string name;
+public:
+    Image(const string& name)
+    :name{name} { }
+    ~Image() { }
 
-struct key_hash
-{
-    size_t operator()(const key& e) const
+    string get_name() const
     {
-        return e.id1*31 + e.id2;
+        return name;
     }
 };
 
-struct key_eq
+
+template<typename T>
+class default_comparator
 {
-    bool operator()(const key& a, const key& b) const
+private:
+public:
+    bool is_less(T* a, T* b)
     {
-        return a.id1 == b.id1 && a.id2 == b.id2;
+        return a->get_name() < b->get_name();
     }
 };
 
-struct ph
+template<typename T>
+class Node
 {
-    size_t operator()(int* e) const
+private:
+    T* img;
+public:
+    Node<T>* left;
+    Node<T>* right;
+public:
+    Node(Image* img)
+    :img{img} 
+    { 
+        left = nullptr;
+        right = nullptr;
+    }
+    ~Node() { }
+
+    T* get_imagePtr()
     {
-        return *e;
+        return img;
     }
 };
 
-struct pe
+template<typename T, typename LESS = default_comparator<T>>
+class Tree
 {
-        bool operator()(int* a, int* b) const
+private:
+    Node<T>* root;
+    LESS c;
+private:
+    void add(Node<T>*& node, T* img)
+    {
+        if(node == nullptr)
         {
-            return *a == *b;
+            node = new Node<T>{img};
+            return;
         }
+        bool less = c.is_less(node->get_imagePtr(), img);
+        if(less)
+        {
+            add(node->left, img);
+        }
+        else
+        {
+            add(node->right, img);
+        }
+    }
+public:
+    Tree()
+    :root{nullptr} { }
+
+    void add(T* img)
+    {
+        add(root, img);
+    }
 };
+
 
 int main()
 {
-    unordered_map<int, string> ns;
-    
-    ns[0] = "cero";
-    ns[10] = "diez";
-    ns[20] = "veinte";
-    ns[30] = "treinta";
-    ns[40] = "cuarenta";
-    
-    for(auto& e : ns)
-        cout << e.first << "" << e.second << "\n";
-        
-    //se complica cuando el tipo de dato no es un tipo conocido
-    
-    unordered_map<key, string, key_hash, key_eq> s;
-    s[key{10, 15}] = "veinticinco";
-    s[key{2, 8}] = "diez";
-    s[key{4, 7}] = "once";
-    s[key{1, 3}] = "cuatro";
-    
-    for(auto& e : s)
-        cout << e.first.id1 << " " << e.first.id2  << " " << e.second << "\n";
-        
-    auto it = s.find(key{2, 8});
-    
-    if(it == s.end())
-        cout << "not found\n";
-    else
-        cout << it->second << "\n";
-        
-    unordered_map<int*, string, ph, pe> p;
-    
-    p[new int{10}] = "diez";
-    p[new int{11}] = "once";
-    p[new int{14}] = "catorce";
-    p[new int{0}] = "cero";
-    
-    int pivot = 14;
-    
-    auto i3 = p.find(&pivot);
-    cout << i3->second << "\n";
+    Tree<Image> t1;
+
+    t1.add(new Image{"img1"});
+    t1.add(new Image{"img2"});
 }

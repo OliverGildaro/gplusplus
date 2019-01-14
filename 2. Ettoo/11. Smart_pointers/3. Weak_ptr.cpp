@@ -28,6 +28,7 @@ struct Padre
 struct Hijo
 {
     weak_ptr<Padre> padre;//la agregacion se da con weak, Hijo agrega a Padre
+    
     ~Hijo()
     {
         cout << "adios padre\n";

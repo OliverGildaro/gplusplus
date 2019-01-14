@@ -10,7 +10,6 @@
 //*shared
 using namespace std;
 
-
 struct N
 {
     int n;

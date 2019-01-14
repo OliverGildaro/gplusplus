@@ -1,16 +1,7 @@
 #include <iostream>
 #include <map>
-//MAPS
-//*elementos estan almacenados como clave y valor
-//*No hay claves repetidas
-//*map->arbol binario de busqueda
-//*unordered_map->tabla hash
-using namespace std;
-//insert->O(log2N)
-//delete->O(log2N)
-//find->O(log2N)
-
 //mapa ordenado
+using namespace std;
 struct id
 {
   int n;
