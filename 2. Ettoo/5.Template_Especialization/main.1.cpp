@@ -9,6 +9,13 @@ void sucesor(const T& n)
       cout << n+1 << "\n";
 }
 
+template<>
+void sucesor<int>(const int& n)
+{
+    
+    cout << "esta es una especializacion " << n+1 << "\n";
+}
+
 template <>
 void sucesor<string>(const string& s)
 {
@@ -43,13 +50,11 @@ struct fact<1>
 
 int main()
 {
-      // sucesor(12);//siempre busca su especializacion, si no la encuentra usa una generica
-      // sucesor("hola"s);//tiene que ser convertida a string en este punto
+      sucesor(12);//siempre busca su especializacion, si no la encuentra usa una generica
+      sucesor("hola"s);//tiene que ser convertida a string en este punto
 
-      cout << factorial<5>() << "\n";
-      // cout << fact<6>::value <<"\n";//este metodo es mucho mas rapido dado que se come 
-      //las llamadas a las funciones intermedias y devuelve directamente 720
-      //el 6 debe ser conocido en tiempo de compilacion
+    //   cout << factorial<5>() << "\n";
+    //   cout << fact<6>::value <<"\n";//este metodo es mucho mas rapido dado que se come las llamadas a las funciones intermedias y devuelve directamente 720 el 6 debe ser conocido en tiempo de compilacion
 }
 
 //nm -C main | grep factorial... muestra las funciones que genera

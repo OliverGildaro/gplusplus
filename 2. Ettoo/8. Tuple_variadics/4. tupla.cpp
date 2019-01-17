@@ -12,13 +12,11 @@ void show(const tuple<string, string, int>& s)
       cout << get<2>(s) << "\n";
 }
 
-
 struct Person
 {
       string nombre;
       string apellido;
 };
-
 
 int main()
 {
