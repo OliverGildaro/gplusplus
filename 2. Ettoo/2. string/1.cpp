@@ -76,8 +76,7 @@ int main()
     else
         cout <<index <<"\n";
 
-    Person p{"juan lopez"};//con string_view evitamos hacer una copia en este punto
-    //dado que en este punto convierte el const char* en string y despues de enviarlo lo destruye
+    Person p{"juan lopez"};//con string_view evitamos hacer una copia en este punto, dado que convierte el const char* en string y despues de enviarlo lo destruye
     Person g{"Jose suares"s};
 
     p.print();

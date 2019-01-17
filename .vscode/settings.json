@@ -46,6 +46,8 @@
         "utility": "cpp",
         "optional": "cpp",
         "list": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "string": "cpp",
+        "unordered_set": "cpp"
     }
 }

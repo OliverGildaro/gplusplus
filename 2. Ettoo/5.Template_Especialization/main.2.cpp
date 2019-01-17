@@ -26,28 +26,27 @@ template<>
 class container<FILE*>
 {
 private:
-      FILE* f;
+      FILE* fl;
 public:
       container(const char* fn, const char* om)
-      :f{fopen(fn,om)} { }
+      :fl{fopen(fn,om)} { }
       ~container() 
       { 
-            fclose(f);
+            fclose(fl);
       }
 
       void puts(const char* s)
       {
-            fputs(s, f);
+            fputs(s, fl);
       }
 
-      // const FILE& get() const 
-      // {
-      //       return value;
-      // }
+      FILE* get() const 
+      {
+            return fl;
+      }
 };
 
 template<typename T>
-
 class container<T*>
 {
 private:
@@ -61,10 +60,6 @@ public:
             delete p;
       }
 
-      const T& get() const
-      {
-            return *p;
-      }
       const T* operator->() const
       {
             return p;
@@ -88,27 +83,34 @@ struct Z
       
 };
 
+/* fopen example */
+// #include <stdio.h>
+// int main ()
+// {
+//   FILE * pFile;
+//   pFile = fopen ("myfile.txt","w");
+//   if (pFile!=NULL)
+//   {
+//     fputs ("fopen example",pFile);
+//     fclose (pFile);
+//   }
+//   return 0;
+// }
+
 
 int main()
 {
-      // container<int> p{5};
-      // container<int> q{7};
+      container<int> p{5};
+      container<int> q{7};
 
-      // cout << p.get() + q.get() << "\n";
+      cout << p.get() + q.get() << "\n";
 
-      // container<string> s{"hello"};
-      // cout << s.get() << "\n";
+      container<string> s{"hello"};
+      cout << s.get() << "\n";
 
-      // container<FILE*> f{fopen("a.txt", "w")};//si no puede abrir devuelve un puntero a null
-      //en caso de que la ruta no exista o el archivo sea restringido
-      //w es escribir
-      //r es leer
-      //wb es escritura binaria
-      //wt es escritura de texto
-      //rb lectura binaria
-      //rt lectura de texto
-      // fputs("hello", f.get());
-      // fclose(f.get());
+      container<FILE*> f{"a.txt", "w"};//si no puede abrir devuelve un puntero a null en caso de que la ruta no exista o el archivo sea restringido (w es escribir, r es leer, wb es escritura binaria, wt es escritura de texto, rb lectura binaria, rt lectura de texto
+    //   fputs("hello", f->get());
+    //   fclose(f.get());
 
       //especializacion de clase container que reciba un file, mas eficiente
 

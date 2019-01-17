@@ -2,8 +2,7 @@
 #include <map>
 #include <memory>
 #include <variant>
-//ANY
-//OPTIONAL
+//VARIANTS
 using namespace std;
 
 struct automovil

@@ -24,8 +24,8 @@ public:
       }
 };
 
-template <typename T, typename...A>
-T create_instance(const A&...args)
+template <typename T, typename...ARGS>//el primer argumento es el tipo de instancia que se desea crear, el segundo es un conjunto de argumentos
+T create_instance(const ARGS&...args)
 {
       cout << "creating instance\n";
       return T{args...};
@@ -33,10 +33,9 @@ T create_instance(const A&...args)
 
 int main()
 {
-      auto x = create_instance<A>(10, 18);
-      auto y = create_instance<P>("hola");
+      auto a = create_instance<A>(10, 18);
+      cout << a.x + a.y << "\n";
 
-      cout << x.x + x.y << "\n";
-
-      y.show();
+      auto b = create_instance<P>("hola");
+      b.show();
 }
