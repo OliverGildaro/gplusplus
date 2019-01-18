@@ -1,6 +1,12 @@
 #include <iostream>
+#include "xml_writer.h"
 
 using namespace std;
+
+ostream& operator<<(ostream& os, const document& doc)
+{
+    return os << doc.serialize();
+}
 
 auto main() -> int
 {
