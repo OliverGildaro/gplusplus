@@ -3,7 +3,6 @@
 #include <functional>
 using namespace std;
 
-
 struct nombre_apellido
 {
     string nombre;
