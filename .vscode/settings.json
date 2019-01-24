@@ -49,6 +49,8 @@
         "variant": "cpp",
         "string": "cpp",
         "unordered_set": "cpp",
-        "memory": "cpp"
+        "memory": "cpp",
+        "any": "cpp",
+        "map": "cpp"
     }
 }
