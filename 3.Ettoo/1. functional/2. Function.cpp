@@ -3,87 +3,37 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-using namespace std::placeholders;
-//FUNCTION
-//*me permite encapsular funciones
-int sum(int x, int y)
-{
-    return x+y;
+using namespace std::placeholders;//agregar para usar bind
+
+void v1(const string& s) 
+{ 
+    cout << s <<"\n"; 
 }
 
-void v1(const string& s)
-{
-    cout << s <<"\n";
+void v2(const string& s1, const string& s2) 
+{ 
+    cout << s1 << " " << s2 << "\n"; 
 }
 
-void v2(const string& s1, const string& s2)
-{
-    cout << s1 << " " << s2 << "\n";
-}
-
-void p(int a, const string& b, int c)
-{
-    cout << a << " " <<b << " " << c <<"\n";
-}
-
-void invertir(string& s)
-{
-    cout <<"V\n";
-    reverse(s.begin(), s.end());//funciona con cadenas, vectores y arrays
+void v3(const string& s1, const string& s2, const string& s3)
+{ 
+    cout << s1 << " " << s2 << " " << s3 << "\n"; 
 }
 
 int main()
 {
-    function<int(int, int)> q =sum;//recibe dos enteros y devuelve un entero
+    vector<function<void (const string&)> > visitors;
 
-    cout << q(10, 15) <<"\n";//soporta tb functors y lambdas, es mejor que punetos a funciones
-
-    vector<function<void (const string&)>> visitors;
-    visitors.push_back(v1);
-    visitors.push_back([](auto& s)
-    {
-        cout << "***" << s<<"\n";
-    });
-
-    string h = "hello world\n";
-    visitors.push_back([&h](auto& s){
-        cout << h << " " << s << "\n";
-    });
-
-    for(auto& e : visitors)
-    {
-        e("something ocurred");
-    }
-
-    auto x = bind(v2, "HHHHH", _1);//-1 dice que el segundo parametro de v2 va a ser el primer parametro que va a recibir es HHHH, es un placeholder... au,emtar el using............
+    auto x = bind(v2, "HHHHH", _1);//bind recibe un puntero a una funcion, un string y un placeholder, y devuelve una funcion binded...
     visitors.push_back(x);
-    //bind, logra hacer match con los dos parametros de la funcion
-    auto y = bind(v2, _1, "MMMMMM");
+    auto y = bind(v2, _1, "MMMMMM");//...en la cual solo existe una variable a ser asignada, esa es determinada por el placeholder, el segundo objeto que recibe ya ha sido construido a partir del string "MMMMMM" recibido
     visitors.push_back(y);
 
+    auto z = bind(v3, "AAAA", "BBBB", _1);
+    visitors.push_back(z);
 
     for(auto& e : visitors)
     {
         e("something ocurred");
     }
-
-    p(2, "lunes", 8);
-
-    auto qq = bind(p, _1, _3, _2);//hay que lograr que haga macht con el metodo p()
-    qq(15, 25, "martes");
-
-    auto rr = bind(p, 10, _1, 50);
-    rr("miercoles");
-
-    string xxx = "olumor";
-    invertir(xxx);
-
-    cout << xxx << "\n";
-
-    string yy = "atinauj";
-    auto inv = bind(invertir, ref(yy));
-
-    inv();
-
-    cout << yy << "\n";
 }

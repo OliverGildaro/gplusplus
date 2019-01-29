@@ -1,17 +1,18 @@
 #include <iostream>
 #include <functional>
 #include <vector>
-using namespace std;
 //FUNCTION
 //*me permite encapsular funciones
-int sum(int x, int y)
+using namespace std;
+
+int sum(int a, int b)
 {
-    return x+y;
+    return a+b;
 }
 
-void v1(const string& s)
+void v1(const string& value)
 {
-    cout << s <<"\n";
+    cout << value <<"\n";
 }
 
 int main()
@@ -20,19 +21,19 @@ int main()
 
     cout << q(10, 15) <<"\n";//soporta tb functors y lambdas, es mejor que punetos a funciones
 
-    vector<function<void (const string&)>> visitors;
-    visitors.push_back(v1);
-    visitors.push_back([](auto& s)
+    vector<function<void (const string&)>> visitors;//declaro un vector en el que cada objeto que se guarde sera de tipo "function" el cual recibira un const string&
+    visitors.push_back(v1);//le mando un puntero a una funcion
+    visitors.push_back([](const string& s)//le mando un lambda
     {
         cout << "***" << s<<"\n";
     });
 
-    string h = "hello world\n";
-    visitors.push_back([&h](auto& s){
+    string h = "hello world";
+    visitors.push_back([&h](const string& s){//le mando un lambda y tb absorbe un string
         cout << h << " " << s << "\n";
     });
 
-    for(auto& e : visitors)
+    for(auto& e : visitors)//itero en mi vector, cada uno es una funcion que recibe algo, en este caso "something ocurred"
     {
         e("something ocurred");
     }

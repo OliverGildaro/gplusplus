@@ -51,6 +51,8 @@
         "unordered_set": "cpp",
         "memory": "cpp",
         "any": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "mutex": "cpp",
+        "iomanip": "cpp"
     }
 }

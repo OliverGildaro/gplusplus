@@ -3,8 +3,6 @@
 #include <memory>
 using namespace std;
 
-
-
 class vehiculo
 {
 private:
@@ -14,7 +12,6 @@ public:
     virtual ~vehiculo() { }
     virtual void mover() = 0;
 };
-
 
 class Auto : public vehiculo
 {
