@@ -23,13 +23,16 @@ ostream& operator<<(ostream& os, const person& p)
 istream& operator>>(istream& is, person& p)
 {
     string line;
-    getline(is, line);//accede al archivo
-    if(is.fail()) return is;
-    auto pos = line.find(",");
+    getline(is, line);//copia la primera linea del archivo en line
+    if(is.fail()) return is;//verifica si no hay error en el file
+    auto pos = line.find(",");//devuelve la sposicion donde se encuentra ","
     if(pos == string::npos)//npos es de la clase fstream, busca las comas sino la encuentra bota una excepcion
+    {
+        cout << "throw except\n";
         throw 143;
+    }
 
-    auto sid =line.substr(0, pos);
+    auto sid = line.substr(0, pos);
     auto name = line.substr(pos+1);
     p.id = stoi(sid);//transforma string a entero (stoi)
     p.name = name;
@@ -40,6 +43,7 @@ istream& operator>>(istream& is, person& p)
 int main()
 {
     // ofstream f{"archivo.txt"};
+    // cout << f.good() << "\n";
     // if(!f.good())
     // {
     //     cerr << "error\n";

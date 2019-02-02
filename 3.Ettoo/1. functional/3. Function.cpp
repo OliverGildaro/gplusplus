@@ -18,7 +18,6 @@ void invertir(string& s)
 
 int main()
 {
-    p(2, "lunes", 8);
     auto qq = bind(p, _1, _3, _2);
     qq(15, 25, "martes");
 
@@ -27,13 +26,10 @@ int main()
 
     string xxx = "olumor";
     invertir(xxx);
-
     cout << xxx << "\n";
 
     string yy = "atinauj";
     auto inv = bind(invertir, ref(yy));
-
     inv();
-
     cout << yy << "\n";
 }

@@ -53,6 +53,7 @@
         "any": "cpp",
         "map": "cpp",
         "mutex": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "algorithm": "cpp"
     }
 }
